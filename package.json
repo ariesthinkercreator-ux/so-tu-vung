@@ -1,0 +1,1 @@
+{ "name": "so-tu-vung", "private": true, "type": "module", "engines": { "node": ">=18" } }

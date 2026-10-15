@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Sổ Từ Vựng – tra từ tiếng Anh cho người học IELTS/TOEIC: định nghĩa, ví dụ, nghĩa tiếng Việt, các thể của từ, đồng nghĩa/trái nghĩa.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Sổ Từ Vựng</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Be+Vietnam+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a learner's dictionary page — search bar on top, entry column + a narrow side rail for browsing word lists */
+:root{
+  --paper:#f5f6f8; --sheet:#ffffff; --ink:#18203a; --muted:#5d6580; --rule:#dfe2ea;
+  --accent:#2e55d6; --accent-soft:#e6ecfd; --mark:#fff1a8;
+  --lvA:#1f8a5b; --lvB:#2e55d6; --lvC:#8a3fc2;
+  --f-display:"Literata", Georgia, "Times New Roman", serif;
+  --f-body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11141d; --sheet:#181c28; --ink:#e7e9f2; --muted:#9aa1b8; --rule:#2a3042;
+  --accent:#8aa5ff; --accent-soft:#232c4a; --mark:#5a4c12;
+  --lvA:#5cc996; --lvB:#8aa5ff; --lvC:#c79af0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11141d; --sheet:#181c28; --ink:#e7e9f2; --muted:#9aa1b8; --rule:#2a3042;
+  --accent:#8aa5ff; --accent-soft:#232c4a; --mark:#5a4c12;
+  --lvA:#5cc996; --lvB:#8aa5ff; --lvC:#c79af0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15px/1.6 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:18px 14px;border-bottom:1px solid var(--rule)}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.brand h1{font:700 1.45rem/1.1 var(--f-display);margin:0;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-size:.85rem}
+.search{position:relative}
+.search input{width:100%;padding:13px 110px 13px 16px;border:1.5px solid var(--rule);border-radius:10px;background:var(--sheet);font-size:1.05rem}
+.search input:focus{border-color:var(--accent);outline:none}
+.search .go{position:absolute;right:6px;top:6px;bottom:6px;padding:0 18px;border:0;border-radius:7px;background:var(--accent);color:var(--sheet);font-weight:600;cursor:pointer}
+.sugg{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--sheet);border:1px solid var(--rule);border-radius:10px;box-shadow:0 10px 30px rgba(10,20,50,.12);list-style:none;margin:0;padding:6px;max-height:340px;overflow:auto}
+.sugg li{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer}
+.sugg li[aria-selected="true"],.sugg li:hover{background:var(--accent-soft)}
+.sugg small{color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;margin-top:24px}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
+main{min-width:0}
+.entry{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:24px clamp(16px,3vw,32px) 28px}
+.hw{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hw h2{font:700 clamp(2rem,5vw,2.8rem)/1.05 var(--f-display);margin:0;letter-spacing:-.015em;overflow-wrap:anywhere}
+.lv{display:inline-flex;align-items:center;justify-content:center;min-width:2.3em;padding:2px 8px;border-radius:6px;font:600 .8rem/1.4 var(--f-mono);color:var(--sheet)}
+.lv.A{background:var(--lvA)}.lv.B{background:var(--lvB)}.lv.C{background:var(--lvC)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.badge{font-size:.75rem;letter-spacing:.03em;padding:2px 9px;border:1px solid var(--rule);border-radius:99px;color:var(--muted)}
+.badge.awl{border-color:var(--accent);color:var(--accent)}
+.redirect{margin-top:10px;color:var(--muted);font-size:.9rem}
+.sec{margin-top:26px}
+.sec>h3{font:600 .72rem/1 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px}
+.family{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.family{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fam{border:1px solid var(--rule);border-radius:9px;padding:10px 12px;min-width:0}
+.fam b{display:block;font-size:.75rem;color:var(--muted);font-weight:500;margin-bottom:4px}
+.fam .w{display:flex;flex-wrap:wrap;gap:4px 8px}
+.fam .none{color:var(--muted);font-size:.85rem}
+.pos{border-top:1px solid var(--rule);padding-top:18px;margin-top:22px}
+.pos-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pos-h em{font:italic 500 1.15rem var(--f-display);color:var(--accent)}
+.pos-h .vi{color:var(--muted);font-size:.85rem}
+.infl{margin-top:6px;font-size:.88rem;color:var(--muted)}
+.infl code{font-family:var(--f-mono);font-size:.85em;color:var(--ink)}
+.usage{margin-top:12px;display:grid;gap:8px}
+.note{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:.92rem}
+.note b{font-weight:600}
+.pat{display:flex;flex-wrap:wrap;gap:6px}
+.pat code{font:.82rem var(--f-mono);background:var(--paper);border:1px solid var(--rule);padding:3px 8px;border-radius:6px}
+ol.senses{margin:14px 0 0;padding-left:1.4em;display:grid;gap:14px}
+ol.senses li::marker{font:600 .9rem var(--f-mono);color:var(--muted)}
+.def{font-size:1rem}
+.dom{font-size:.72rem;color:var(--muted);border:1px solid var(--rule);border-radius:99px;padding:0 7px;margin-left:6px;white-space:nowrap}
+.ex{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.ex li{font-family:var(--f-display);font-style:italic;color:var(--ink);padding-left:14px;position:relative}
+.ex li::before{content:"";position:absolute;left:0;top:.75em;width:6px;height:1px;background:var(--muted)}
+.ex mark{background:var(--mark);color:inherit;padding:0 2px;border-radius:2px;font-style:normal;font-weight:600}
+.sn{margin-top:4px;font-size:.84rem;color:var(--muted)}
+.nyms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.nyms{grid-template-columns:1fr}}
+.nym{border:1px solid var(--rule);border-radius:9px;padding:12px 14px}
+.nym b{display:block;font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:6px}
+.main-def{margin-top:16px;border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;background:var(--accent-soft)}
+.main-def .lab{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font:600 .72rem/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.main-def .lab em{font:italic 500 .95rem var(--f-display);text-transform:none;letter-spacing:0;color:var(--accent)}
+.main-def .ipa{font:.9rem var(--f-mono);color:var(--muted);text-transform:none;letter-spacing:0}
+.main-def .vi-main{font:600 1.2rem/1.4 var(--f-body);margin-top:6px;overflow-wrap:anywhere}
+.main-def .en-main{margin-top:4px;font-size:.98rem;color:var(--ink)}
+.main-def .en-main span{color:var(--muted);font-size:.8rem;margin-right:6px}
+.main-def .none{color:var(--muted);font-size:.85rem;font-style:italic;margin-top:6px}
+.xs{margin-top:10px;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+.xs summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 14px;font-size:.88rem}
+.xs summary::-webkit-details-marker{display:none}
+.xs summary::after{content:"Xem nguồn ▾";margin-left:auto;color:var(--accent);font-size:.8rem}
+.xs[open] summary::after{content:"Ẩn ▴"}
+.xs .pill{font:600 .75rem/1.4 var(--f-mono);padding:2px 9px;border-radius:99px;color:var(--sheet)}
+.xs .pill.ok{background:var(--lvA)}.xs .pill.mid{background:var(--lvB)}.xs .pill.low{background:var(--lvC)}
+.xs ul{list-style:none;margin:0;padding:0 14px 12px;display:grid;gap:8px}
+.xs li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:10px;font-size:.88rem;align-items:baseline}
+.xs li b{font-weight:600;color:var(--muted);font-size:.78rem}
+.xs li .m{overflow-wrap:anywhere}
+.xs li .tag{font-size:.72rem;margin-left:6px;white-space:nowrap}
+.xs li .tag.y{color:var(--lvA)}.xs li .tag.n{color:var(--lvC)}
+.xs .xn{padding:0 14px 12px;font-size:.8rem;color:var(--muted)}
+@media (max-width:480px){.xs li{grid-template-columns:1fr;gap:2px}}
+.pos-vi{margin-top:6px;font-size:.92rem}
+.pos-vi b{font-weight:500;color:var(--muted);font-size:.8rem;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--rule);background:var(--sheet);border-radius:99px;padding:3px 11px;font-size:.88rem;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.plain{cursor:default;color:var(--muted)}
+.chip.plain:hover{border-color:var(--rule);color:var(--muted)}
+.link{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.empty{color:var(--muted);font-size:.88rem}
+aside{display:grid;gap:18px;align-content:start;min-width:0}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:16px}
+.panel h4{margin:0 0 10px;font:600 .72rem/1 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.tabs{display:flex;gap:4px;margin-bottom:10px}
+.tabs button{flex:1;border:1px solid var(--rule);background:var(--paper);border-radius:7px;padding:6px;cursor:pointer;font-size:.85rem}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--sheet)}
+.panel select{width:100%;padding:7px 9px;border:1px solid var(--rule);border-radius:7px;background:var(--paper);margin-bottom:10px}
+.blist{display:flex;flex-wrap:wrap;gap:5px;max-height:330px;overflow:auto}
+.count{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-variant-numeric:tabular-nums}
+.stats div{border-top:1px solid var(--rule);padding-top:6px}
+.stats strong{display:block;font:700 1.25rem var(--f-display)}
+.stats span{font-size:.78rem;color:var(--muted)}
+.ielts{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.ielts .it{display:grid;gap:4px}
+.ielts .vi{font:600 1.1rem/1.4 var(--f-body)}
+.ielts .tp{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lvA);font-weight:600}
+.ielts .ex li{font-size:.95rem}
+.badge.ie{border-color:var(--lvA);color:var(--lvA)}
+.miss{background:var(--sheet);border:1px dashed var(--rule);border-radius:12px;padding:24px}
+.miss h2{font:700 1.4rem var(--f-display);margin:0 0 8px}
+.miss p{margin:0 0 10px}
+.online-box{margin-top:18px;border-top:1px solid var(--rule);padding-top:16px;display:grid;gap:10px}
+.thinking{color:var(--muted);display:flex;align-items:center;gap:10px}
+.thinking::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid var(--rule);border-top-color:var(--accent);flex:none}
+@media (prefers-reduced-motion:no-preference){.thinking::before{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}}
+.extlinks{display:flex;flex-wrap:wrap;gap:6px}
+.extlinks a{border:1px solid var(--rule);border-radius:99px;padding:3px 11px;font-size:.88rem;color:var(--accent);text-decoration:none;background:var(--sheet)}
+.extlinks a:hover{border-color:var(--accent)}
+.btn{border:1px solid var(--accent);background:var(--sheet);color:var(--accent);border-radius:7px;padding:5px 12px;cursor:pointer;font-weight:500;justify-self:start}
+.keyform{display:flex;gap:8px;margin:6px 0}
+.keyform input{flex:1;min-width:0;font:inherit;font-size:.88rem;padding:6px 9px;border:1px solid var(--rule);border-radius:7px;background:var(--sheet);color:inherit}
+.badge.ol{border-color:var(--lvC);color:var(--lvC)}
+.ol-note{margin-top:10px;font-size:.84rem;color:var(--muted)}
+footer{margin-top:28px;color:var(--muted);font-size:.8rem;line-height:1.5}
+.loading{padding:40px 0;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.entry{animation:in .25s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Sổ Từ Vựng</h1><span id="tagline">IELTS theo chủ đề · Academic Word List · CEFR A1–C2 · WordNet · tra trực tuyến khi thiếu từ</span></div>
+    <form class="search" id="form" role="search" autocomplete="off">
+      <input id="q" type="search" placeholder="Tra một từ tiếng Anh, ví dụ: significant, analyse, although…" aria-label="Tra từ" aria-autocomplete="list" aria-controls="sugg">
+      <button class="go" type="submit">Tra từ</button>
+      <ul class="sugg" id="sugg" role="listbox" hidden></ul>
+    </form>
+  </header>
+
+  <div class="layout">
+    <main id="main"><p class="loading">Đang tải cơ sở dữ liệu từ vựng…</p></main>
+    <aside>
+      <section class="panel">
+        <h4>Khám phá theo danh sách</h4>
+        <div class="tabs" role="group" aria-label="Danh sách">
+          <button type="button" id="tab-awl" aria-pressed="true">AWL</button>
+          <button type="button" id="tab-cefr" aria-pressed="false">CEFR</button>
+          <button type="button" id="tab-ielts" aria-pressed="false">IELTS</button>
+        </div>
+        <select id="sel" aria-label="Chọn nhóm"></select>
+        <div class="blist" id="blist"></div>
+        <p class="count" id="bcount"></p>
+        <p class="count"><button class="link" type="button" id="rand">Tra một từ ngẫu nhiên</button></p>
+      </section>
+      <section class="panel" id="key-panel" hidden>
+        <h4>Khóa API Claude của bạn</h4>
+        <p class="count" id="key-status"></p>
+        <form class="keyform" id="key-form" autocomplete="off">
+          <input id="key-in" type="password" placeholder="sk-ant-…" aria-label="Khóa API Claude" spellcheck="false">
+          <button class="btn" type="submit">Lưu</button>
+        </form>
+        <p class="count">Không bắt buộc. Không có khóa, từ chưa có trong cơ sở dữ liệu vẫn được tra và dịch máy sang tiếng Việt miễn phí. Có khóa thì Claude tra, nghĩa tiếng Việt sát hơn, phí tính vào tài khoản API của chính bạn. Lấy khóa tại <a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">platform.claude.com</a>. Khóa chỉ lưu trên trình duyệt này và được gửi thẳng tới Anthropic, không qua máy chủ của trang.</p>
+        <p class="count" id="key-del-row" hidden><button class="link" type="button" id="key-del">Xóa khóa khỏi trình duyệt này</button></p>
+      </section>
+      <section class="panel" id="recent-panel" hidden>
+        <h4>Đã tra gần đây</h4>
+        <div class="chips" id="recent"></div>
+      </section>
+      <section class="panel">
+        <h4>Cơ sở dữ liệu</h4>
+        <div class="stats" id="stats"></div>
+      </section>
+    </aside>
+  </div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(() => {
+const LV = ["A1","A2","B1","B2","C1","C2"];
+const POS_VI = {noun:"danh từ",verb:"động từ",adjective:"tính từ",adverb:"trạng từ",preposition:"giới từ",
+  conjunction:"liên từ",determiner:"từ hạn định",pronoun:"đại từ",number:"số từ",interjection:"thán từ",
+  "modal auxiliary":"động từ khuyết thiếu","be-verb":"động từ to be","do-verb":"trợ động từ do",
+  "have-verb":"động từ have","infinitive-to":"to + động từ nguyên mẫu",phrase:"cụm từ",word:"từ vựng"};
+const INFL_VI = {plural:"số nhiều",past:"quá khứ","past participle":"phân từ II","-ing":"V-ing",
+  "3rd person":"ngôi 3 số ít",comparative:"so sánh hơn",superlative:"so sánh nhất"};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+               set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+let IDX = null, ROW = new Map(), FORMS = {}, SORTED = [], TOPICS = [];
+const shards = new Map();
+const shardKey = w => /^[a-z]/.test(w) ? w[0] : "other";
+async function loadShard(k){
+  if(!shards.has(k)) shards.set(k, fetch(`data/${k}.json`).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); }));
+  return shards.get(k);
+}
+async function getEntry(w){ const d = await loadShard(shardKey(w)); return d[w]; }
+
+// ---- search resolution (same rules as resolver.py) ----
+function normWord(w){
+  return w.normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[\u2010-\u2015\u2212]/g,"-")
+          .replace(/\u2019/g,"'").replace(/\./g,"").trim().toLowerCase().replace(/\s+/g," ");
+}
+const PAIRS = [["isation","ization"],["ise","ize"],["ised","ized"],["ises","izes"],["ising","izing"],
+  ["yse","yze"],["ysed","yzed"],["ysing","yzing"],["our","or"],["tre","ter"],["ogue","og"],["lled","led"],
+  ["lling","ling"],["ller","ler"],["ence","ense"],["ae","e"],["oe","e"]];
+function variants(q){ const out = [];
+  for(const [a,b] of PAIRS) for(const [x,y] of [[a,b],[b,a]]) if(q.includes(x)){ const v = q.split(x).join(y); if(!out.includes(v)) out.push(v); }
+  return out; }
+function stems(q){ const out = []; const add = x => { if(x.length >= 2 && !out.includes(x)) out.push(x); };
+  const dbl = s => s.length >= 2 && s[s.length-1] === s[s.length-2];
+  for(const [suf,rep] of [["ies","y"],["ied","y"],["iest","y"],["ier","y"]]) if(q.endsWith(suf)) add(q.slice(0,-suf.length)+rep);
+  for(const suf of ["ing","est","ed","er","es","s"]) if(q.endsWith(suf)){ const base = q.slice(0,-suf.length); add(base);
+    if(["ing","ed","er","est"].includes(suf)){ add(base+"e"); if(dbl(base)) add(base.slice(0,-1)); } }
+  return out; }
+function resolve(raw){
+  const q = normWord(raw); if(!q) return null;
+  const tries = [q, ...variants(q)];
+  for(const t of [...tries]) for(const h of [t.split("-").join(""), t.split("-").join(" "), t.split(" ").join("-")]) if(!tries.includes(h)) tries.push(h);
+  for(const t of tries){ if(ROW.has(t)) return t; if(FORMS[t]) return FORMS[t]; }
+  for(const t of tries) for(const s of stems(t)){
+    if(ROW.has(s)) return s; if(FORMS[s]) return FORMS[s];
+    for(const v of variants(s)) if(ROW.has(v)) return v; }
+  return null;
+}
+
+// ranking: words in the curated lists first, then by CEFR level, then shorter
+function rank(r){ const core = r[2] ? 0 : 1; const lv = r[1] < 0 ? 6 : r[1]; return core*100 + lv*10 + Math.min(r[0].length, 9); }
+function suggest(q){
+  q = normWord(q); if(!q) return [];
+  const out = [];
+  // binary search the sorted list for the prefix
+  let lo = 0, hi = SORTED.length;
+  while(lo < hi){ const m = (lo+hi)>>1; if(SORTED[m][0] < q) lo = m+1; else hi = m; }
+  for(let i = lo; i < SORTED.length && SORTED[i][0].startsWith(q) && out.length < 400; i++) out.push(SORTED[i]);
+  out.sort((a,b) => (a[0]===q?-1:b[0]===q?1:0) || rank(a)-rank(b) || a[0].localeCompare(b[0]));
+  return out.slice(0, 8);
+}
+function lev(a,b,max){ if(Math.abs(a.length-b.length)>max) return max+1;
+  let prev = Array.from({length:b.length+1},(_,i)=>i);
+  for(let i=1;i<=a.length;i++){ const cur=[i]; let best=i;
+    for(let j=1;j<=b.length;j++){ cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)); best=Math.min(best,cur[j]); }
+    if(best>max) return max+1; prev=cur; }
+  return prev[b.length]; }
+function nearby(q){
+  const res = [];
+  for(const r of IDX.words){ const d = lev(q, r[0], 2); if(d <= 2) res.push([d, r]); }
+  res.sort((a,b) => a[0]-b[0] || rank(a[1])-rank(b[1]));
+  return res.slice(0, 10).map(x => x[1][0]);
+}
+
+const lvClass = l => l ? l[0] : "";
+const lvChip = l => l ? `<span class="lv ${lvClass(l)}" title="Trình độ CEFR">${l}</span>` : "";
+const olGet = w => store.get("ol:"+w, null);
+const known = w => ROW.has(w) || !!olGet(w);
+function wordLink(w, cls="chip"){
+  return known(w) ? `<button type="button" class="${cls}" data-w="${esc(w)}">${esc(w)}</button>`
+                    : `<span class="${cls} plain">${esc(w)}</span>`;
+}
+function highlight(text, forms){
+  const safe = esc(text);
+  const alts = [...forms].filter(Boolean).sort((a,b)=>b.length-a.length).map(f => f.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  if(!alts.length) return safe;
+  return safe.replace(new RegExp(`\\b(${alts.join("|")})\\b`, "gi"), "<mark>$1</mark>");
+}
+
+function render(word, e, from){
+  const forms = new Set([word]);
+  (e.p||[]).forEach(b => Object.values(b.infl||{}).forEach(f => forms.add(f)));
+  if(word.endsWith("e")) forms.add(word.slice(0,-1)+"ing");
+  forms.add(word+"s"); forms.add(word+"ed"); forms.add(word+"es");
+  const lists = e.lists || [];
+  const badges = [];
+  [...new Set((e.ielts||[]).map(x=>x.t).filter(Boolean))].forEach(t => badges.push(`<span class="badge ie">IELTS · ${esc(t)}</span>`));
+  if(e.awl) badges.push(`<span class="badge awl">AWL · sublist ${e.awl}</span>`);
+  if(lists.includes("CEFR")) badges.push(`<span class="badge">CEFR</span>`);
+  if(lists.includes("NAWL")) badges.push(`<span class="badge">New Academic Word List</span>`);
+  if(lists.includes("NGSL")) badges.push(`<span class="badge">New General Service List</span>`);
+  if(lists.length===1 && lists[0]==="WordNet") badges.push(`<span class="badge">Từ điển mở rộng (WordNet)</span>`);
+  if(e.online) badges.push(`<span class="badge ol">Tra trực tuyến · ngoài cơ sở dữ liệu</span>`);
+
+  // word family table: the headword sits in its own part(s) of speech
+  const fam = {noun:[],verb:[],adjective:[],adverb:[]};
+  (e.p||[]).forEach(b => { if(fam[b.pos] && !fam[b.pos].includes(word)) fam[b.pos].unshift(word); });
+  Object.entries(e.fam||{}).forEach(([p,ws]) => ws.forEach(w => fam[p] && !fam[p].includes(w) && fam[p].push(w)));
+  const famHtml = Object.entries(fam).map(([p,ws]) => `<div class="fam"><b>${POS_VI[p]} · ${p}</b>${
+      ws.length ? `<div class="w">${ws.map(w => w===word ? `<strong>${esc(w)}</strong>` : wordLink(w,"link")).join("")}</div>` : `<span class="none">—</span>`}</div>`).join("");
+
+  const posHtml = (e.p||[]).map(b => {
+    const infl = Object.entries(b.infl||{}).map(([k,v]) => `${INFL_VI[k]||k}: <code>${esc(v)}</code>`).join(" · ");
+    const usage = [];
+    if(b.note) usage.push(`<div class="note"><b>Cách dùng:</b> ${esc(b.note)}</div>`);
+    if(b.patterns && b.patterns.length) usage.push(`<div><div class="sn" style="margin:0 0 6px">Mẫu câu thường gặp</div><div class="pat">${b.patterns.map(p=>`<code>${esc(p)}</code>`).join("")}</div></div>`);
+    const senses = b.senses.map(s => `<li>
+        <div class="def">${esc(s.d)}${s.dom ? `<span class="dom">${esc(s.dom)}</span>` : ""}</div>
+        ${s.ex && s.ex.length ? `<ul class="ex">${s.ex.map(x => `<li>${highlight(x, forms)}</li>`).join("")}</ul>` : ""}
+        ${s.syn && s.syn.length ? `<div class="sn">Cùng nghĩa: ${s.syn.map(w=>wordLink(w,"link")).join(", ")}</div>` : ""}
+        ${s.ant && s.ant.length ? `<div class="sn">Trái nghĩa: ${s.ant.map(w=>wordLink(w,"link")).join(", ")}</div>` : ""}
+      </li>`).join("");
+    return `<section class="pos">
+      <div class="pos-h"><em>${esc(b.pos)}</em><span class="vi">${POS_VI[b.pos]||""}</span>${lvChip(b.cefr)}</div>
+      ${b.vi && b.vi.length ? `<div class="pos-vi" lang="vi"><b>Nghĩa tiếng Việt</b>${b.vi.map(esc).join("; ")}</div>` : ""}
+      <ol class="senses">${senses}</ol>
+      ${infl ? `<div class="infl">${infl}</div>` : ""}
+      ${usage.length ? `<div class="usage">${usage.join("")}</div>` : ""}
+    </section>`;
+  }).join("");
+
+  const ielts = (e.ielts||[]).length ? `<div class="ielts">${e.ielts.map(it => `<div class="it">
+      <span class="tp">IELTS${it.t ? " · "+esc(it.t) : ""}</span>
+      <span class="vi">${esc(it.vi)}</span>
+      ${it.ex ? `<ul class="ex"><li>${highlight(it.ex, forms)}</li></ul>` : ""}</div>`).join("")}</div>` : "";
+  // main-definition box: Vietnamese main meaning + the English definition of the main sense
+  const mb = (e.p||[])[e.mp||0] || (e.p||[])[0] || {};
+  const enMain = e.md || ((mb.senses||[])[0]||{}).d || "";
+  const mainHtml = `<section class="main-def" aria-label="Nghĩa chính">
+      <div class="lab">Nghĩa chính${mb.pos ? ` <em>${esc(mb.pos)}</em>` : ""}${e.ipa ? ` <span class="ipa">${esc(e.ipa)}</span>` : ""}</div>
+      ${e.vi ? `<div class="vi-main" lang="vi">${esc(e.vi)}</div>` : `<div class="none">Chưa có nghĩa tiếng Việt cho từ chuyên ngành/hiếm này — xem định nghĩa tiếng Anh bên dưới.</div>`}
+      ${enMain ? `<div class="en-main" lang="en"><span>EN</span>${esc(enMain)}</div>` : ""}
+    </section>`;
+  // the meaning shown vs. what each independent dictionary says
+  const SRC = {"en_vn_dic":"en_vn_dic","StarDict":"Từ điển StarDict","Wiktionary":"Wiktionary"};
+  let xsHtml = "";
+  if(e.xs && e.xs.s){
+    const names = Object.keys(e.xs.s), ok = e.xs.ok || [];
+    const cls = ok.length === names.length ? "ok" : ok.length ? "mid" : "low";
+    const msg = ok.length === names.length ? (names.length > 1 ? "Các nguồn đều khớp" : "Khớp với nguồn đối chiếu")
+              : ok.length ? "Một số nguồn ghi nghĩa khác" : "Các nguồn diễn đạt khác — xem để đối chiếu";
+    xsHtml = `<details class="xs"><summary><span class="pill ${cls}">${ok.length}/${names.length} nguồn khớp</span>${msg}</summary>
+      <ul>${names.map(n => `<li><b>${esc(SRC[n]||n)}</b><span class="m" lang="vi">${esc(e.xs.s[n])}<span class="tag ${ok.includes(n)?"y":"n"}">${ok.includes(n)?"✓ khớp":"≠ khác"}</span></span></li>`).join("")}</ul>
+      <p class="xn">Nghĩa hiển thị được so với từng từ điển độc lập. "Khác" có thể là nghĩa phụ, cách dịch khác, hoặc lỗi của nguồn đó.</p></details>`;
+  }
+  const parts = (e.parts||[]).filter(w => ROW.has(w));
+  const phr = (IDX.phrases[word]||[]).filter(w => w !== word);
+  const hasFam = Object.values(fam).some(ws => ws.length);
+  const syn = e.syn||[], ant = e.ant||[];
+  $("#main").innerHTML = `<article class="entry">
+    <div class="hw"><h2>${esc(word)}</h2>${lvChip(e.lvl)}</div>
+    ${from ? `<p class="redirect">Kết quả cho “${esc(from)}”: <strong>${esc(word)}</strong></p>` : ""}
+    <div class="badges">${badges.join("")}</div>
+    ${mainHtml}
+    ${xsHtml}
+    <div class="sec"><h3>Định nghĩa · ví dụ · cách dùng</h3></div>
+    ${posHtml}
+    ${ielts ? `<div class="sec pos"><h3>Nghĩa tiếng Việt (IELTS)</h3>${ielts}</div>` : ""}
+    ${parts.length ? `<div class="sec pos"><h3>Thành phần của cụm từ</h3><div class="chips">${parts.map(w=>wordLink(w)).join("")}</div></div>` : ""}
+    ${hasFam ? `<div class="sec pos"><h3>Các thể của từ</h3><div class="family">${famHtml}</div></div>` : ""}
+    ${phr.length ? `<div class="sec pos"><h3>Cụm từ IELTS có từ này</h3><div class="chips">${phr.map(w=>wordLink(w)).join("")}</div></div>` : ""}
+    <div class="sec pos"><h3>Đồng nghĩa &amp; trái nghĩa</h3><div class="nyms">
+      <div class="nym"><b>Từ đồng nghĩa</b>${syn.length ? `<div class="chips">${syn.map(w=>wordLink(w)).join("")}</div>` : `<span class="empty">Không có từ đồng nghĩa trực tiếp trong dữ liệu.</span>`}</div>
+      <div class="nym"><b>Từ trái nghĩa</b>${ant.length ? `<div class="chips">${ant.map(w=>wordLink(w)).join("")}</div>` : `<span class="empty">Từ này không có từ trái nghĩa phổ biến.</span>`}</div>
+    </div></div>
+    ${e.online ? `<p class="ol-note">Từ này chưa có trong cơ sở dữ liệu nên được tra trực tuyến${e.via ? ` (${esc(e.via)})` : ""} và lưu lại trên trình duyệt của bạn. Hãy đối chiếu với từ điển nếu cần độ chính xác cao. ${!e.vi ? keyHint() : ""}<button class="link" type="button" data-relook="${esc(word)}">Tra lại</button></p>` : ""}
+  </article>`;
+}
+
+// ---- online fallback: only for words that are NOT in the database ----
+// Claude answers on the viewer's own account (the `sample` capability); results are kept in this browser.
+const SAMPLE = (window.claude && typeof window.claude.use === "function")
+  ? window.claude.use("sample").catch(() => null) : Promise.resolve(null);
+let current = "", olCtl = null, olOff = "";
+const extLinks = q => { const u = encodeURIComponent(q);
+  return `<div class="extlinks">
+    <a href="https://dictionary.cambridge.org/dictionary/english-vietnamese/${u}" target="_blank" rel="noopener">Cambridge Anh–Việt</a>
+    <a href="https://dictionary.cambridge.org/dictionary/english/${u}" target="_blank" rel="noopener">Cambridge Anh–Anh</a>
+    <a href="https://www.google.com/search?q=${encodeURIComponent(q + " nghĩa là gì")}" target="_blank" rel="noopener">Tìm trên Google</a></div>`; };
+const PROMPT = q => `You are an English–Vietnamese learner's dictionary for Vietnamese students preparing for IELTS and TOEIC.
+Look up this English word or phrase: ${JSON.stringify(q)}
+Reply with only one JSON object and no other text.
+If it is a real English word, phrase, idiom, phrasal verb or abbreviation (or an inflected or misspelled form of one), reply:
+{"valid":true,"word":"dictionary headword in base form","ipa":"/British IPA/","lvl":"CEFR level A1-C2, or empty","vi":"nghĩa tiếng Việt chính, ngắn gọn","md":"main English definition in one sentence","p":[{"pos":"noun | verb | adjective | adverb | phrasal verb | idiom | ...","vi":["nghĩa tiếng Việt 1","nghĩa tiếng Việt 2"],"senses":[{"d":"clear learner's definition in English","ex":["natural example sentence"]}],"note":"ghi chú cách dùng bằng tiếng Việt (giới từ, collocation thường gặp), or empty"}],"syn":["common synonyms"],"ant":["common antonyms"],"fam":{"noun":[],"verb":[],"adjective":[],"adverb":[]}}
+Most common meaning first. At most 3 parts of speech, 3 senses each, 2 examples per sense, 5 synonyms, 5 antonyms; use empty arrays when there are none.
+If it is not English or not a real word, reply: {"valid":false,"suggest":["up to 5 real English words the user may have meant"]}`;
+const S = v => typeof v === "string" ? v.trim() : "";
+const A = (v, n) => Array.isArray(v) ? v.map(S).filter(Boolean).slice(0, n) : [];
+function cleanEntry(x){
+  const p = (Array.isArray(x.p) ? x.p : []).slice(0, 4).map(b => ({
+    pos: S(b && b.pos).toLowerCase() || "word", vi: A(b && b.vi, 4), note: S(b && b.note),
+    senses: (Array.isArray(b && b.senses) ? b.senses : []).slice(0, 4)
+      .map(s => ({d: S(s && s.d), ex: A(s && s.ex, 3)})).filter(s => s.d)
+  })).filter(b => b.senses.length);
+  const fam = {}; for(const k of ["noun","verb","adjective","adverb"]){ const v = A((x.fam||{})[k], 5); if(v.length) fam[k] = v; }
+  const lvl = S(x.lvl).toUpperCase();
+  return {vi: S(x.vi), md: S(x.md), ipa: S(x.ipa), lvl: /^[ABC][12]$/.test(lvl) ? lvl : "",
+          p, syn: A(x.syn, 6), ant: A(x.ant, 6), fam, lists: [], online: true};
+}
+const ERR_VI = {
+  not_granted: "Bạn chưa cho phép trang này dùng Claude để tra từ.",
+  sampling_disabled: "Tài khoản này không dùng được Claude để tra từ.",
+  rate_limited: "Bạn vừa tra quá nhiều từ. Đợi vài phút rồi bấm Thử lại.",
+  invalid_json: "Kết quả trả về không đọc được.",
+  session_expired: "Phiên đăng nhập Claude đã hết hạn. Đăng nhập lại rồi bấm Thử lại.",
+  refused: "Không tra được từ này.",
+  bad_key: "Khóa API Claude không đúng hoặc đã bị thu hồi. Kiểm tra lại khóa ở ô “Khóa API Claude của bạn”.",
+  no_credit: "Tài khoản API Claude của bạn đã hết tiền. Nạp thêm tại platform.claude.com rồi bấm Thử lại.",
+  network: "Không kết nối được tới Claude. Kiểm tra mạng rồi bấm Thử lại.",
+};
+const keyHint = () => !$("#key-panel").hidden && !getKey()
+  ? `<button class="link" type="button" id="key-jump">Dán khóa API Claude của bạn</button> để Claude tra kèm nghĩa tiếng Việt. ` : "";
+const HIDE = ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"];
+
+function renderMiss(q, fresh=false){
+  const near = nearby(q);
+  $("#main").innerHTML = `<div class="miss"><h2>“${esc(q)}” chưa có trong cơ sở dữ liệu</h2>
+    ${near.length ? `<p>Từ gần giống trong cơ sở dữ liệu:</p><div class="chips">${near.map(w=>wordLink(w)).join("")}</div>` : ""}
+    <div class="online-box" id="online"></div></div>`;
+  lookupOnline(q, fresh);
+}
+// the site's own lookup service (/api/lookup on Vercel); absent inside Claude
+async function askServer(q, fresh, signal){
+  let r;
+  try{ r = await fetch(`api/lookup?q=${encodeURIComponent(q)}${fresh ? "&fresh=1" : ""}`, {signal}); }
+  catch(e){ throw {code: signal && signal.aborted ? "cancelled" : "no_server"}; }
+  const ct = r.headers.get("content-type") || "";
+  if(r.status === 404 || !ct.includes("json")) throw {code: "no_server"};
+  if(r.status === 429) throw {code: "rate_limited"};
+  if(!r.ok) throw {code: "upstream_error"};
+  return r.json();
+}
+// the viewer's own Claude API key: kept in this browser only, sent straight to Anthropic
+const KEY = "apikey";
+const getKey = () => { try{ return localStorage.getItem(KEY) || ""; }catch(e){ return ""; } };
+async function askWithKey(q, key, signal){
+  let r;
+  try{
+    r = await fetch("https://api.anthropic.com/v1/messages", {method: "POST", signal,
+      headers: {"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
+                "anthropic-dangerous-direct-browser-access": "true"},
+      body: JSON.stringify({model: "claude-haiku-5-5", max_tokens: 1500,
+                            messages: [{role: "user", content: PROMPT(q)}]})});
+  }catch(e){ throw {code: signal && signal.aborted ? "cancelled" : "network"}; }
+  let body = null; try{ body = await r.json(); }catch(e){}
+  if(!r.ok){
+    const m = S(body && body.error && body.error.message).toLowerCase();
+    if(r.status === 401 || r.status === 403) throw {code: "bad_key"};
+    if(r.status === 429) throw {code: "rate_limited"};
+    if(m.includes("credit") || m.includes("billing")) throw {code: "no_credit"};
+    throw {code: "upstream_error"};
+  }
+  const text = (body && Array.isArray(body.content) ? body.content : []).map(c => c.text || "").join("");
+  const a = text.indexOf("{"), b = text.lastIndexOf("}");
+  try{ return JSON.parse(text.slice(a, b + 1)); }catch(e){ throw {code: "invalid_json"}; }
+}
+// free path, works on any browser/phone, costs nobody:
+// English entry from Free Dictionary (called from the viewer's browser), then Vietnamese by machine translation
+// (Chrome's on-device translator when it is already installed, otherwise MyMemory's free API — quota is per viewer's IP).
+async function askFreeDict(q, signal){
+  let r;
+  try{ r = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(q), {signal}); }
+  catch(e){ throw {code: signal && signal.aborted ? "cancelled" : "network"}; }
+  if(r.status === 404) return {valid: false, suggest: []};
+  if(!r.ok) throw {code: "upstream_error"};
+  const d = await r.json(), first = d[0] || {}, p = [];
+  for(const ent of d) for(const m of ent.meanings || []){
+    let b = p.find(x => x.pos === m.partOfSpeech);
+    if(!b){ b = {pos: m.partOfSpeech, vi: [], senses: [], note: ""}; p.push(b); }
+    for(const def of (m.definitions || []).slice(0, 3))
+      if(b.senses.length < 3) b.senses.push({d: def.definition, ex: def.example ? [def.example] : []});
+  }
+  const all = k => [...new Set(d.flatMap(e => (e.meanings || []).flatMap(m => m[k] || [])))].slice(0, 5);
+  const ipa = first.phonetic || ((first.phonetics || []).find(x => x.text) || {}).text || "";
+  return {valid: true, word: first.word || q, ipa, lvl: "", vi: "", md: (p[0] && p[0].senses[0] || {}).d || "",
+          p: p.slice(0, 3), syn: all("synonyms"), ant: all("antonyms"), fam: {}, via: "Free Dictionary"};
+}
+const within = (ms, pr) => Promise.race([pr, new Promise((_, no) => setTimeout(() => no(new Error("timeout")), ms))]);
+async function makeTranslator(){
+  try{   // on-device translator, only if Chrome already has it (never wait for a download)
+    if(self.Translator && await within(1200, Translator.availability({sourceLanguage: "en", targetLanguage: "vi"})) === "available"){
+      const t = await within(3000, Translator.create({sourceLanguage: "en", targetLanguage: "vi"}));
+      return {name: "Chrome", run: s => within(5000, t.translate(s))};
+    }
+  }catch(e){}
+  return {name: "MyMemory", run: async (s, signal) => {
+    const r = await within(8000, fetch(`https://api.mymemory.translated.net/get?langpair=en%7Cvi&q=${encodeURIComponent(s)}`, {signal}));
+    const j = await r.json();
+    const t = S(j && j.responseData && j.responseData.translatedText);
+    if(!r.ok || +j.responseStatus !== 200 || /MYMEMORY WARNING|QUERY LENGTH LIMIT/i.test(t)) throw new Error("mt");
+    return t;
+  }};
+}
+async function addVietnamese(word, e, signal){
+  const mt = await makeTranslator();
+  const tr = s => mt.run(s, signal).then(S, () => "");
+  const [head, ...defs] = await Promise.all([tr(word), ...e.p.map(b => tr(b.senses[0].d))]);
+  if(head && head.toLowerCase() !== word.toLowerCase()) e.vi = head.toLowerCase();
+  e.p.forEach((b, i) => { if(defs[i]) b.vi = [defs[i]]; });
+  if(!e.vi && defs[0]) e.vi = defs[0];
+  if(e.vi) e.via = `Free Dictionary · nghĩa tiếng Việt dịch máy (${mt.name}), có thể chưa sát nghĩa`;
+}
+async function lookupOnline(q, fresh=false){
+  const box = () => document.getElementById("online");
+  const sample = await SAMPLE;
+  if(current !== q || !box()) return;
+  if(olCtl) olCtl.abort();
+  const ctl = olCtl = new AbortController();
+  box().innerHTML = `<p class="thinking">Đang tra trực tuyến “${esc(q)}”…</p>`;
+  const viaClaude = !!sample && !olOff;
+  const key = viaClaude ? "" : getKey();
+  try{
+    const x = viaClaude
+      ? await sample.json(PROMPT(q), {modelTier: "quick", signal: ctl.signal,
+                                      cache: fresh ? {gcTime: 86400000, refresh: true} : {gcTime: 86400000}})
+      : key ? await askWithKey(q, key, ctl.signal)
+      : await askFreeDict(q, ctl.signal).catch(err => err.code === "cancelled" ? Promise.reject(err) : askServer(q, fresh, ctl.signal));
+    if(current !== q) return;
+    if(!x || typeof x !== "object" || x.valid === false){
+      const sug = A(x && x.suggest, 5);
+      box().innerHTML = `<p>Không tìm thấy từ tiếng Anh nào là “${esc(q)}”. Kiểm tra lại chính tả.</p>
+        ${sug.length ? `<p>Có thể bạn muốn tra:</p><div class="chips">${sug.map(w=>`<button type="button" class="chip" data-w="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}
+        <p>Hoặc tra ở:</p>${extLinks(q)}`;
+      return;
+    }
+    const head = normWord(S(x.word) || q);
+    const inDb = resolve(head);
+    if(inDb){ showDb(inDb, q); return; }        // misspelling or other form of a word we already have
+    const e = cleanEntry(x);
+    if(!e.p.length) throw {code: "invalid_json"};
+    e.via = S(x.via) || (viaClaude || key ? "Claude" : "");
+    if(!e.vi && !viaClaude && !key){
+      box().innerHTML = `<p class="thinking">Đang dịch nghĩa sang tiếng Việt…</p>`;
+      await addVietnamese(head, e, ctl.signal);
+      if(current !== q) return;
+    }
+    const rec = {w: head, e};
+    store.set("ol:"+q, rec); if(head !== q) store.set("ol:"+head, rec);
+    showOnline(q, rec);
+  }catch(err){
+    if(!err || err.code === "cancelled" || current !== q || !box()) return;
+    if(viaClaude && HIDE.includes(err.code)){ olOff = ERR_VI[err.code] || "x"; lookupOnline(q, fresh); return; }  // try the site's own service
+    if(err.code === "no_server"){
+      box().innerHTML = `<p>Chưa bật tra trực tuyến cho trang này. ${keyHint()}Bạn có thể tra ở:</p>${extLinks(q)}`; return; }
+    const msg = ERR_VI[err.code] || "Chưa lấy được kết quả trực tuyến.";
+    const retry = err.code === "refused" ? "" : `<button class="btn" type="button" data-retry="${esc(q)}">Thử lại</button>`;
+    box().innerHTML = `<p>${esc(msg)}</p>${retry}<p>Hoặc tra ở:</p>${extLinks(q)}`;
+  }
+}
+function showOnline(q, rec){
+  render(rec.w, rec.e, rec.w !== q ? q : null);
+  window.scrollTo({top:0});
+  remember(rec.w);
+}
+
+async function showDb(word, from, push=true){
+  try{
+    const e = await getEntry(word);
+    render(word, e, from && from !== word ? from : null);
+    window.scrollTo({top:0});
+    if(push && /^[a-z0-9._~-]+$/.test(word)) history.replaceState(null, "", "#"+word);
+    remember(word);
+  }catch(err){
+    $("#main").innerHTML = `<div class="miss"><h2>Không tải được dữ liệu</h2><p>Kiểm tra kết nối mạng rồi tra lại.</p></div>`;
+  }
+}
+async function open(q, push=true){
+  q = normWord(q||"").slice(0, 80);
+  if(!q) return;
+  hideSugg(); $("#q").value = q; current = q;
+  if(olCtl){ olCtl.abort(); olCtl = null; }
+  const word = resolve(q);
+  if(word){ showDb(word, q, push); return; }       // 1) database first
+  const cached = olGet(q);                         // 2) looked up online before, on this browser
+  if(cached && cached.e && cached.e.vi){ showOnline(q, cached); return; }
+  renderMiss(q);                                   // 3) online lookup
+}
+
+// recent searches (per browser)
+function remember(w){ let r = store.get("recent", []).filter(x => x !== w); r.unshift(w); r = r.slice(0, 12); store.set("recent", r); showRecent(); }
+function showRecent(){ const r = store.get("recent", []); $("#recent-panel").hidden = !r.length; $("#recent").innerHTML = r.map(w=>wordLink(w)).join(""); }
+
+// API key panel: only outside Claude (inside Claude, lookups already run on the viewer's account)
+function showKey(){
+  const k = getKey();
+  $("#key-status").textContent = k ? `Đang dùng khóa …${k.slice(-4)}` : "Chưa có khóa: từ ngoài cơ sở dữ liệu được dịch máy miễn phí.";
+  $("#key-del-row").hidden = !k; $("#key-in").value = "";
+}
+SAMPLE.then(s => { if(!s){ $("#key-panel").hidden = false; showKey(); } });
+$("#key-form").addEventListener("submit", ev => {
+  ev.preventDefault();
+  const k = $("#key-in").value.trim();
+  if(!/^sk-ant-[\w-]{20,}$/.test(k)){ $("#key-status").textContent = "Khóa không đúng định dạng (bắt đầu bằng sk-ant-)."; return; }
+  try{ localStorage.setItem(KEY, k); }catch(e){ $("#key-status").textContent = "Trình duyệt này không cho lưu khóa."; return; }
+  showKey();
+  if(document.getElementById("online") || document.querySelector("[data-relook]")) renderMiss(current, true);
+});
+$("#key-del").addEventListener("click", () => { try{ localStorage.removeItem(KEY); }catch(e){} showKey(); });
+
+// suggestions dropdown
+let sel = -1, items = [];
+function hideSugg(){ $("#sugg").hidden = true; sel = -1; }
+function showSugg(){
+  items = suggest($("#q").value);
+  const ul = $("#sugg");
+  if(!items.length){ hideSugg(); return; }
+  ul.innerHTML = items.map((r,i) => `<li role="option" id="s${i}" data-w="${esc(r[0])}" aria-selected="${i===sel}"><span>${esc(r[0])}</span><small>${[r[1]>=0?LV[r[1]]:"", r[3]?`AWL ${r[3]}`:"", r[2]&16?"IELTS":""].filter(Boolean).join(" · ")}</small></li>`).join("");
+  ul.hidden = false;
+}
+$("#q").addEventListener("input", () => { sel = -1; showSugg(); });
+$("#q").addEventListener("keydown", ev => {
+  if($("#sugg").hidden) return;
+  if(ev.key==="ArrowDown"){ sel = Math.min(sel+1, items.length-1); showSugg(); ev.preventDefault(); }
+  else if(ev.key==="ArrowUp"){ sel = Math.max(sel-1, -1); showSugg(); ev.preventDefault(); }
+  else if(ev.key==="Escape") hideSugg();
+});
+$("#sugg").addEventListener("mousedown", ev => { const li = ev.target.closest("li"); if(li){ ev.preventDefault(); open(li.dataset.w); } });
+$("#form").addEventListener("submit", ev => { ev.preventDefault(); open(sel >= 0 && items[sel] ? items[sel][0] : $("#q").value); });
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-w]"); if(b && !b.closest("#sugg")) open(b.dataset.w);
+  const r = ev.target.closest("[data-retry]"); if(r && r.dataset.retry === current) lookupOnline(current, true);
+  const re = ev.target.closest("[data-relook]");
+  if(re){ const w = re.dataset.relook; try{ localStorage.removeItem("ol:"+w); localStorage.removeItem("ol:"+current); }catch(e){}
+          renderMiss(current, true); }
+  if(ev.target.closest("#key-jump")){ $("#key-panel").scrollIntoView({behavior: "smooth", block: "center"}); $("#key-in").focus(); }
+  if(!ev.target.closest(".search")) hideSugg();
+});
+
+// browse panel
+let mode = store.get("browse", "awl");
+function fillSelect(){
+  const s = $("#sel");
+  s.innerHTML = mode === "awl"
+    ? Array.from({length:10},(_,i)=>`<option value="${i+1}">AWL – Sublist ${i+1}${i===0?" (phổ biến nhất)":""}</option>`).join("")
+    : mode === "cefr" ? LV.map((l,i)=>`<option value="${i}">CEFR ${l}</option>`).join("")
+    : TOPICS.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join("");
+  ["awl","cefr","ielts"].forEach(m => $("#tab-"+m).setAttribute("aria-pressed", mode===m));
+  browse();
+}
+function browse(){
+  const v = +$("#sel").value;
+  const rows = IDX.words.filter(r => mode==="awl" ? r[3]===v : mode==="cefr" ? (r[1]===v && (r[2]&1)) : (r[4]||[]).includes(TOPICS[v])).sort((a,b)=>a[0].localeCompare(b[0]));
+  $("#blist").innerHTML = rows.map(r => wordLink(r[0])).join("");
+  $("#bcount").textContent = `${rows.length.toLocaleString("vi-VN")} từ`;
+}
+$("#tab-awl").onclick = () => { mode="awl"; store.set("browse",mode); fillSelect(); };
+$("#tab-cefr").onclick = () => { mode="cefr"; store.set("browse",mode); fillSelect(); };
+$("#tab-ielts").onclick = () => { mode="ielts"; store.set("browse",mode); fillSelect(); };
+$("#sel").onchange = browse;
+$("#rand").onclick = () => { const core = IDX.words.filter(r => r[2]); open(core[Math.floor(Math.random()*core.length)][0]); };
+
+// boot
+fetch("data/index.json").then(r => r.json()).then(d => {
+  IDX = d; FORMS = d.forms;
+  (d.ext ? d.ext.split("\n") : []).forEach(w => d.words.push([w, -1, 0, 0]));
+  d.words.forEach(r => ROW.set(r[0], r));
+  TOPICS = [...new Set(d.words.flatMap(r => r[4]||[]))].sort();
+  d.phrases = d.phrases || {};
+  SORTED = d.words.slice().sort((a,b) => a[0] < b[0] ? -1 : 1);
+  const core = d.words.filter(r => r[2] & 31).length, awl = d.words.filter(r => r[3]).length;
+  $("#stats").innerHTML = `<div><strong>${d.words.length.toLocaleString("vi-VN")}</strong><span>mục từ</span></div>
+    <div><strong>${core.toLocaleString("vi-VN")}</strong><span>từ trong AWL / CEFR / NGSL</span></div>
+    <div><strong>${awl}</strong><span>họ từ AWL</span></div>
+    <div><strong>${d.words.filter(r => r[2]&16).length}</strong><span>từ &amp; cụm từ IELTS</span></div>
+    <div><strong>${TOPICS.length}</strong><span>chủ đề IELTS</span></div>
+    <div><strong>${Object.keys(FORMS).length.toLocaleString("vi-VN")}</strong><span>dạng biến đổi nhận diện</span></div>`;
+  $("#foot").innerHTML = `Nguồn dữ liệu: ${d.meta.sources.map(esc).join(" · ")}. Định nghĩa tiếng Anh từ WordNet; ví dụ và ghi chú cách dùng bổ sung được biên soạn cho ứng dụng.`;
+  fillSelect(); showRecent();
+  const h = decodeURIComponent(location.hash.slice(1));
+  open(h || "significant", false);
+}).catch(() => { $("#main").innerHTML = `<div class="miss"><h2>Không tải được cơ sở dữ liệu</h2><p>Tải lại trang để thử lần nữa.</p></div>`; });
+})();
+</script>
+
+</body>
+</html>
