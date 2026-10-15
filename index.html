@@ -133,10 +133,6 @@ aside{display:grid;gap:18px;align-content:start;min-width:0}
 .panel select{width:100%;padding:7px 9px;border:1px solid var(--rule);border-radius:7px;background:var(--paper);margin-bottom:10px}
 .blist{display:flex;flex-wrap:wrap;gap:5px;max-height:330px;overflow:auto}
 .count{font-size:.8rem;color:var(--muted);margin:8px 0 0}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-variant-numeric:tabular-nums}
-.stats div{border-top:1px solid var(--rule);padding-top:6px}
-.stats strong{display:block;font:700 1.25rem var(--f-display)}
-.stats span{font-size:.78rem;color:var(--muted)}
 .ielts{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
 .ielts .it{display:grid;gap:4px}
 .ielts .vi{font:600 1.1rem/1.4 var(--f-body)}
@@ -201,10 +197,6 @@ footer{margin-top:28px;color:var(--muted);font-size:.8rem;line-height:1.5}
       <section class="panel" id="recent-panel" hidden>
         <h4>Đã tra gần đây</h4>
         <div class="chips" id="recent"></div>
-      </section>
-      <section class="panel">
-        <h4>Cơ sở dữ liệu</h4>
-        <div class="stats" id="stats"></div>
       </section>
     </aside>
   </div>
@@ -431,7 +423,7 @@ const ERR_VI = {
   refused: "Không tra được từ này.",
   bad_key: "Khóa API Claude không đúng hoặc đã bị thu hồi. Kiểm tra lại khóa ở ô “Khóa API Claude của bạn”.",
   no_credit: "Tài khoản API Claude của bạn đã hết tiền. Nạp thêm tại platform.claude.com rồi bấm Thử lại.",
-  network: "Không kết nối được tới Claude. Kiểm tra mạng rồi bấm Thử lại.",
+  network: "Không kết nối được tới từ điển trực tuyến (mạng chậm hoặc dịch vụ đang lỗi). Bấm Thử lại sau ít phút.",
 };
 const keyHint = () => !$("#key-panel").hidden && !getKey()
   ? `<button class="link" type="button" id="key-jump">Dán khóa API Claude của bạn</button> để Claude tra kèm nghĩa tiếng Việt. ` : "";
@@ -447,7 +439,7 @@ function renderMiss(q, fresh=false){
 // the site's own lookup service (/api/lookup on Vercel); absent inside Claude
 async function askServer(q, fresh, signal){
   let r;
-  try{ r = await fetch(`api/lookup?q=${encodeURIComponent(q)}${fresh ? "&fresh=1" : ""}`, {signal}); }
+  try{ r = await within(12000, fetch(`api/lookup?q=${encodeURIComponent(q)}${fresh ? "&fresh=1" : ""}`, {signal})); }
   catch(e){ throw {code: signal && signal.aborted ? "cancelled" : "no_server"}; }
   const ct = r.headers.get("content-type") || "";
   if(r.status === 404 || !ct.includes("json")) throw {code: "no_server"};
@@ -482,12 +474,12 @@ async function askWithKey(q, key, signal){
 // free path, works on any browser/phone, costs nobody:
 // English entry from Free Dictionary (called from the viewer's browser), then Vietnamese by machine translation
 // (Chrome's on-device translator when it is already installed, otherwise MyMemory's free API — quota is per viewer's IP).
-async function askFreeDict(q, signal){
-  let r;
-  try{ r = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(q), {signal}); }
-  catch(e){ throw {code: signal && signal.aborted ? "cancelled" : "network"}; }
-  if(r.status === 404) return {valid: false, suggest: []};
-  if(!r.ok) throw {code: "upstream_error"};
+const within = (ms, pr) => Promise.race([pr, new Promise((_, no) => setTimeout(() => no(new Error("timeout")), ms))]);
+const NF = {nf: true};   // "this source has no such word"
+async function fromFreeDict(q, signal){
+  const r = await within(7000, fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(q), {signal}));
+  if(r.status === 404) throw NF;
+  if(!r.ok) throw new Error("fd " + r.status);
   const d = await r.json(), first = d[0] || {}, p = [];
   for(const ent of d) for(const m of ent.meanings || []){
     let b = p.find(x => x.pos === m.partOfSpeech);
@@ -500,7 +492,31 @@ async function askFreeDict(q, signal){
   return {valid: true, word: first.word || q, ipa, lvl: "", vi: "", md: (p[0] && p[0].senses[0] || {}).d || "",
           p: p.slice(0, 3), syn: all("synonyms"), ant: all("antonyms"), fam: {}, via: "Free Dictionary"};
 }
-const within = (ms, pr) => Promise.race([pr, new Promise((_, no) => setTimeout(() => no(new Error("timeout")), ms))]);
+const txt = h => { const t = document.createElement("template"); t.innerHTML = h || ""; return t.content.textContent.replace(/\s+/g, " ").trim(); };
+async function fromWiktionary(q, signal){
+  const r = await within(7000, fetch("https://en.wiktionary.org/api/rest_v1/page/definition/" + encodeURIComponent(q.replace(/ /g, "_")), {signal}));
+  if(r.status === 404) throw NF;
+  if(!r.ok) throw new Error("wk " + r.status);
+  const d = await r.json(), p = [];
+  for(const m of d.en || []){
+    const senses = (m.definitions || []).map(x => ({d: txt(x.definition), ex: (x.examples || []).map(txt).filter(Boolean).slice(0, 2)}))
+      .filter(x => x.d).slice(0, 3);
+    if(senses.length && p.length < 3) p.push({pos: S(m.partOfSpeech).toLowerCase(), vi: [], senses, note: ""});
+  }
+  if(!p.length) throw NF;
+  return {valid: true, word: q, ipa: "", lvl: "", vi: "", md: p[0].senses[0].d, p, syn: [], ant: [], fam: {}, via: "Wiktionary"};
+}
+// first source that knows the word wins; "not found" only when every source says so
+async function askFreeDict(q, signal){
+  const tries = [fromFreeDict(q, signal), fromWiktionary(q, signal)];
+  try{ return await Promise.any(tries); }
+  catch(agg){
+    if(signal && signal.aborted) throw {code: "cancelled"};
+    const errs = agg.errors || [];
+    if(errs.length && errs.every(e => e === NF)) return {valid: false, suggest: []};
+    throw {code: "network"};
+  }
+}
 async function makeTranslator(){
   try{   // on-device translator, only if Chrome already has it (never wait for a download)
     if(self.Translator && await within(1200, Translator.availability({sourceLanguage: "en", targetLanguage: "vi"})) === "available"){
@@ -523,7 +539,7 @@ async function addVietnamese(word, e, signal){
   if(head && head.toLowerCase() !== word.toLowerCase()) e.vi = head.toLowerCase();
   e.p.forEach((b, i) => { if(defs[i]) b.vi = [defs[i]]; });
   if(!e.vi && defs[0]) e.vi = defs[0];
-  if(e.vi) e.via = `Free Dictionary · nghĩa tiếng Việt dịch máy (${mt.name}), có thể chưa sát nghĩa`;
+  if(e.vi) e.via = `${e.via || "từ điển trực tuyến"} · nghĩa tiếng Việt dịch máy (${mt.name}), có thể chưa sát nghĩa`;
 }
 async function lookupOnline(q, fresh=false){
   const box = () => document.getElementById("online");
@@ -539,7 +555,8 @@ async function lookupOnline(q, fresh=false){
       ? await sample.json(PROMPT(q), {modelTier: "quick", signal: ctl.signal,
                                       cache: fresh ? {gcTime: 86400000, refresh: true} : {gcTime: 86400000}})
       : key ? await askWithKey(q, key, ctl.signal)
-      : await askFreeDict(q, ctl.signal).catch(err => err.code === "cancelled" ? Promise.reject(err) : askServer(q, fresh, ctl.signal));
+      : await askFreeDict(q, ctl.signal).catch(err => err.code === "cancelled" ? Promise.reject(err)
+          : askServer(q, fresh, ctl.signal).catch(e2 => Promise.reject(e2 && e2.code === "no_server" ? err : e2)));
     if(current !== q) return;
     if(!x || typeof x !== "object" || x.valid === false){
       const sug = A(x && x.suggest, 5);
@@ -556,7 +573,7 @@ async function lookupOnline(q, fresh=false){
     e.via = S(x.via) || (viaClaude || key ? "Claude" : "");
     if(!e.vi && !viaClaude && !key){
       box().innerHTML = `<p class="thinking">Đang dịch nghĩa sang tiếng Việt…</p>`;
-      await addVietnamese(head, e, ctl.signal);
+      await within(12000, addVietnamese(head, e, ctl.signal)).catch(() => {});
       if(current !== q) return;
     }
     const rec = {w: head, e};
@@ -682,13 +699,6 @@ fetch("data/index.json").then(r => r.json()).then(d => {
   TOPICS = [...new Set(d.words.flatMap(r => r[4]||[]))].sort();
   d.phrases = d.phrases || {};
   SORTED = d.words.slice().sort((a,b) => a[0] < b[0] ? -1 : 1);
-  const core = d.words.filter(r => r[2] & 31).length, awl = d.words.filter(r => r[3]).length;
-  $("#stats").innerHTML = `<div><strong>${d.words.length.toLocaleString("vi-VN")}</strong><span>mục từ</span></div>
-    <div><strong>${core.toLocaleString("vi-VN")}</strong><span>từ trong AWL / CEFR / NGSL</span></div>
-    <div><strong>${awl}</strong><span>họ từ AWL</span></div>
-    <div><strong>${d.words.filter(r => r[2]&16).length}</strong><span>từ &amp; cụm từ IELTS</span></div>
-    <div><strong>${TOPICS.length}</strong><span>chủ đề IELTS</span></div>
-    <div><strong>${Object.keys(FORMS).length.toLocaleString("vi-VN")}</strong><span>dạng biến đổi nhận diện</span></div>`;
   $("#foot").innerHTML = `Nguồn dữ liệu: ${d.meta.sources.map(esc).join(" · ")}. Định nghĩa tiếng Anh từ WordNet; ví dụ và ghi chú cách dùng bổ sung được biên soạn cho ứng dụng.`;
   fillSelect(); showRecent();
   const h = decodeURIComponent(location.hash.slice(1));
